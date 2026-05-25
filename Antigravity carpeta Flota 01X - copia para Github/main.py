@@ -1,3 +1,4 @@
+import os
 import flet as ft
 from src.database.connection import init_db
 from src.views.entry import get_entry_view
@@ -58,5 +59,9 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
+    # Obtener puerto y host dinámicos para despliegue en la nube (Render)
+    port = int(os.environ.get("PORT", 8550))
+    host = "0.0.0.0" if os.environ.get("PORT") else None
+    
     # Ejecutar en modo navegador web por defecto para que sea fácil probar la vista de PC/Móvil
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=8550, assets_dir="assets")
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER, host=host, port=port, assets_dir="assets")

@@ -1,0 +1,628 @@
+==================================================
+[2026-05-23 21:42:17] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el INICIO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:42:20] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el INICIO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:42:35] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el INICIO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:42:44] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el INICIO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:42:53] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el INICIO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:42:58] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Silva ha realizado el INICIO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:36] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:38] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:42] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:43] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:43] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:45] NOTIFICACIÓN ENVIADA POR SMS
+Destinatario: +56955443322
+Asunto/Detalle: Mensaje SMS a María González
+Mensaje: Hola María González. Tu sesión activa en el vehículo [EF-GH-34] ha sido cerrada por otro conductor. Por favor verifica.
+==================================================
+
+==================================================
+[2026-05-23 21:43:45] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:43:47] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:47:20] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:47:21] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:47:21] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:47:22] NOTIFICACIÓN ENVIADA POR SMS
+Destinatario: +56955443322
+Asunto/Detalle: Mensaje SMS a María González
+Mensaje: Hola María González. Tu sesión activa en el vehículo [EF-GH-34] ha sido cerrada por otro conductor. Por favor verifica.
+==================================================
+
+==================================================
+[2026-05-23 21:47:22] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:47:23] NOTIFICACIÓN ENVIADA POR SMS
+Destinatario: +56955443322
+Asunto/Detalle: Mensaje SMS a María González
+Mensaje: Hola María González. Tu sesión activa en el vehículo [EF-GH-34] ha sido cerrada por otro conductor. Por favor verifica.
+==================================================
+
+==================================================
+[2026-05-23 21:47:23] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:47:24] NOTIFICACIÓN ENVIADA POR SMS
+Destinatario: +56955443322
+Asunto/Detalle: Mensaje SMS a María González
+Mensaje: Hola María González. Tu sesión activa en el vehículo [EF-GH-34] ha sido cerrada por otro conductor. Por favor verifica.
+==================================================
+
+==================================================
+[2026-05-23 21:47:24] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente EF-GH-34
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor María González ha realizado el TÉRMINO de uso para el vehículo con patente [EF-GH-34].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:26] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:28] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:28] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:29] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:29] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:29] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:30] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:30] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:32] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 21:55:37] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el INICIO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 22:04:06] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el TÉRMINO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-23 22:04:08] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente AB-CD-12
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Eduardo Maino ha realizado el TÉRMINO de uso para el vehículo con patente [AB-CD-12].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 08:43:33] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente SL-DS-66
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Walter Riquelme ha realizado el INICIO de uso para el vehículo con patente [SL-DS-66].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 08:59:36] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente TP-HX-99
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Buddy Orellana ha realizado el INICIO de uso para el vehículo con patente [TP-HX-99].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 08:59:37] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente TP-HX-99
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Buddy Orellana ha realizado el INICIO de uso para el vehículo con patente [TP-HX-99].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 08:59:37] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente TP-HX-99
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Buddy Orellana ha realizado el INICIO de uso para el vehículo con patente [TP-HX-99].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 08:59:38] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente TP-HX-99
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Buddy Orellana ha realizado el INICIO de uso para el vehículo con patente [TP-HX-99].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 08:59:50] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente TP-HX-99
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Buddy Orellana ha realizado el INICIO de uso para el vehículo con patente [TP-HX-99].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:04:40] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:04:43] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:04:47] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:04:49] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:04:58] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:05:04] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:05:10] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente LS-YZ-54
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Juan Ortiz ha realizado el INICIO de uso para el vehículo con patente [LS-YZ-54].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:45] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:47] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:48] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:48] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:48] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:50] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:51] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:51] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:13:51] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el INICIO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:14:07] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: TÉRMINO de Uso - Patente VB-GL-10
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Carlos Oliva ha realizado el TÉRMINO de uso para el vehículo con patente [VB-GL-10].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:19:09] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente JK-VX-30
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor C Mondaca ha realizado el INICIO de uso para el vehículo con patente [JK-VX-30].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:19:11] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente JK-VX-30
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor C Mondaca ha realizado el INICIO de uso para el vehículo con patente [JK-VX-30].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:25:25] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente VC-XY-51
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Richard Flores ha realizado el INICIO de uso para el vehículo con patente [VC-XY-51].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:35:00] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente JS-BV-23
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Jocelyn Uribe ha realizado el INICIO de uso para el vehículo con patente [JS-BV-23].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 09:50:49] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente SS-ZY-58
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Rodrigo Lagos ha realizado el INICIO de uso para el vehículo con patente [SS-ZY-58].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+
+==================================================
+[2026-05-24 11:24:13] NOTIFICACIÓN ENVIADA POR EMAIL
+Destinatario: carlos.silva@empresa.cl
+Asunto/Detalle: Alerta FMS: INICIO de Uso - Patente ZY-XT-01
+Mensaje: Estimado/a Carlos Silva (Supervisor),
+
+Le informamos que el conductor Alexander Espinoza ha realizado el INICIO de uso para el vehículo con patente [ZY-XT-01].
+Esta acción fue registrada exitosamente en el sistema de gestión de flota.
+==================================================
+

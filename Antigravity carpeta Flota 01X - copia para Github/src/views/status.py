@@ -269,90 +269,181 @@ def get_status_view(page: ft.Page, on_navigate, entry_type: str, identifier: str
             session.close()
             return ft.View(route="/", controls=[ft.Text("Conductor no encontrado.")])
             
-        # Buscar si el conductor tiene algún uso activo (en cualquier vehículo)
-        active_record = session.query(UsageRecord).filter(
-            and_(UsageRecord.driver_id == driver.id, UsageRecord.status == "active")
-        ).first()
+        driver_id = driver.id
+        driver_name = driver.name
         
-        if not active_record:
-            # ----------------------------------------------------
-            # CONDUCTOR SIN USOS ACTIVOS
-            # ----------------------------------------------------
-            # El RUT ingresado no tiene usos activos. Debe elegir un vehículo.
-            assigned_vehicles = driver.assigned_vehicles
+        # Buscar si el conductor tiene algún uso activo
+        driver_active_record = session.query(UsageRecord).filter(
+            and_(UsageRecord.driver_id == driver_id, UsageRecord.status == "active")
+        ).first()
             
-            # Si no hay asignados, listamos todos los disponibles
-            if not assigned_vehicles:
-                assigned_vehicles = session.query(Vehicle).filter(Vehicle.is_active == True).all()
+        # Definir diálogos de confirmación
+        def show_confirm_dialog(title, text, on_confirm):
+            def handle_yes(e):
+                page.dialog.open = False
+                page.update()
+                on_confirm()
+                
+            def handle_no(e):
+                page.dialog.open = False
+                page.update()
 
-            dropdown_options = [ft.dropdown.Option(v.plate, f"{v.plate} ({v.model})") for v in assigned_vehicles]
-            
-            vehicle_dropdown = ft.Dropdown(
-                label="Seleccione el Vehículo",
-                options=dropdown_options,
-                width=320,
-                border_color="#3F51B5",
-                border_radius=10,
-                color=ft.Colors.WHITE
+            dialog = ft.AlertDialog(
+                title=ft.Text(title, weight=ft.FontWeight.BOLD),
+                content=ft.Text(text),
+                actions=[
+                    ft.TextButton(content=ft.Text("Cancelar", color=ft.Colors.GREY_400), on_click=handle_no),
+                    ft.TextButton(content=ft.Text("Confirmar", weight=ft.FontWeight.BOLD), on_click=handle_yes)
+                ],
+                actions_alignment=ft.MainAxisAlignment.END,
             )
-            
-            def handle_vehicle_submit(e):
-                selected_plate = vehicle_dropdown.value
-                if not selected_plate:
-                    show_alert_dialog("Falta selección", "Por favor seleccione un vehículo para iniciar.")
+            page.dialog = dialog
+            dialog.open = True
+            page.update()
+
+        def show_success_screen(driver_name_val, plate, model, title, desc):
+            content_area.controls = [
+                ft.Icon(ft.Icons.CHECK_CIRCLE, size=60, color=ft.Colors.GREEN_400),
+                ft.Text(title, size=24, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_400),
+                ft.Container(height=10),
+                ft.Text(
+                    desc,
+                    size=14,
+                    weight=ft.FontWeight.W_500,
+                    color=ft.Colors.WHITE,
+                    text_align=ft.TextAlign.CENTER
+                ),
+                ft.Container(height=10),
+                ft.Container(
+                    content=ft.Column([
+                        ft.Text(f"Conductor: {driver_name_val}", size=14, color=ft.Colors.WHITE),
+                        ft.Text(f"Vehículo: {plate} ({model})", size=14, color=ft.Colors.WHITE),
+                        ft.Text(f"Ubicación GPS: {current_coords}", size=12, color=ft.Colors.BLUE_200, italic=True),
+                        ft.Text(f"Fecha/Hora: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}", size=12, color=ft.Colors.GREY_400),
+                    ], spacing=6),
+                    padding=15,
+                    bgcolor="#252538",
+                    border_radius=10,
+                    width=320
+                ),
+                ft.Container(height=15),
+                ft.ElevatedButton(
+                    content=ft.Text("Aceptar / Volver al Inicio", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
+                    width=320,
+                    height=50,
+                    style=ft.ButtonStyle(
+                        bgcolor="#3F51B5",
+                        shape=ft.RoundedRectangleBorder(radius=10),
+                    ),
+                    on_click=lambda _: on_navigate("/")
+                )
+            ]
+            page.update()
+
+        # Acción 1: Activar un vehículo
+        def handle_activate(plate_val):
+            plate_val = plate_val.strip().upper().replace(" ", "")
+            if len(plate_val) == 6 and "-" not in plate_val:
+                plate_val = f"{plate_val[:2]}-{plate_val[2:4]}-{plate_val[4:]}"
+                
+            if not plate_val:
+                show_alert_dialog("Falta patente", "Por favor ingrese una patente para activar.")
+                return
+
+            db_sess = get_session()
+            try:
+                db_driver = db_sess.query(Driver).filter(Driver.id == driver_id).first()
+                db_vehicle = db_sess.query(Vehicle).filter(Vehicle.plate == plate_val).first()
+                if not db_vehicle:
+                    show_alert_dialog("Patente no registrada", "El vehículo ingresado no pertenece a la flota.")
                     return
                 
-                # Desactivar el botón inmediatamente para evitar clics múltiples
-                e.control.disabled = True
-                page.update()
+                if not db_vehicle.is_active:
+                    show_alert_dialog("VEHÍCULO INACTIVO", f"El vehículo {db_vehicle.plate} está inactivo ({db_vehicle.status}). No puede ser utilizado.")
+                    return
+                    
+                # Comprobar si está ocupado por otro conductor
+                other_active = db_sess.query(UsageRecord).filter(
+                    and_(UsageRecord.vehicle_id == db_vehicle.id, UsageRecord.status == "active")
+                ).first()
                 
-                db_sess = get_session()
-                try:
-                    # Obtener vehículo y conductor frescos
-                    db_vehicle = db_sess.query(Vehicle).filter(Vehicle.plate == selected_plate).first()
-                    db_driver = db_sess.query(Driver).filter(Driver.id == driver.id).first()
+                if other_active:
+                    other_driver_name = other_active.driver.name
+                    other_driver_rut = other_active.driver.rut
+                    other_driver_phone = other_active.driver.phone or "+56999999999"
+                    other_active_id = other_active.id
+                    target_vehicle_id = db_vehicle.id
+                    target_vehicle_plate = db_vehicle.plate
+                    target_vehicle_model = db_vehicle.model
                     
-                    # 1. Verificar si el vehículo ya está ocupado por otro conductor
-                    active_record = db_sess.query(UsageRecord).filter(
-                        and_(UsageRecord.vehicle_id == db_vehicle.id, UsageRecord.status == "active")
-                    ).first()
+                    def confirm_take_over():
+                        db_sess2 = get_session()
+                        try:
+                            db_act = db_sess2.query(UsageRecord).filter(UsageRecord.id == other_active_id).first()
+                            
+                            # Terminar sesión anterior
+                            db_act.end_time = datetime.datetime.now()
+                            db_act.end_gps = current_coords
+                            db_act.status = "completed"
+                            
+                            # Notificar al conductor anterior
+                            send_driver_sms(
+                                driver_name=other_driver_name,
+                                driver_phone=other_driver_phone,
+                                message=f"Hola {other_driver_name}. Tu sesión activa en el vehículo [{target_vehicle_plate}] ha sido cerrada por otro conductor ({driver_name})."
+                            )
+                            
+                            # Iniciar nueva sesión para el conductor actual
+                            new_rec = UsageRecord(
+                                vehicle_id=target_vehicle_id,
+                                driver_id=driver_id,
+                                start_time=datetime.datetime.now(),
+                                start_gps=current_coords,
+                                status="active"
+                            )
+                            db_sess2.add(new_rec)
+                            db_sess2.commit()
+                            
+                            # Notificar supervisor
+                            send_supervisor_email(
+                                supervisor_name="Carlos Silva (Supervisor)",
+                                supervisor_email="carlos.silva@empresa.cl",
+                                driver_name=driver_name,
+                                vehicle_plate=target_vehicle_plate,
+                                action="inicio"
+                            )
+                            
+                            show_success_screen(
+                                driver_name, 
+                                target_vehicle_plate, 
+                                target_vehicle_model, 
+                                "¡Activación Exitosa!", 
+                                f"el vehiculo {target_vehicle_plate.replace('-', '')} estaba asignado a {other_driver_name}, pero ahora ha sido asignado a ti"
+                            )
+                        except Exception as ex:
+                            db_sess2.rollback()
+                            show_alert_dialog("Error", f"No se pudo completar la activación: {ex}")
+                        finally:
+                            db_sess2.close()
                     
-                    if active_record:
-                        # Si está ocupado, navegamos a la pantalla de estado del vehículo
-                        # para que decida si quiere cerrar el uso anterior
-                        e.control.disabled = False
-                        page.update()
-                        on_navigate(f"/status/vehicle/{selected_plate}")
-                        return
-                        
-                    # 2. Verificar si el conductor ya tiene otra sesión activa
-                    existing_driver_active = db_sess.query(UsageRecord).filter(
-                        UsageRecord.driver_id == db_driver.id,
-                        UsageRecord.status == "active"
-                    ).first()
-                    
-                    if existing_driver_active:
-                        show_alert_dialog("Conductor Ocupado", f"Ya tienes una sesión activa en el vehículo {existing_driver_active.vehicle.plate}.")
-                        e.control.disabled = False
-                        page.update()
-                        return
-                        
-                    # 3. Si está disponible, creamos la sesión inmediatamente
-                    start_gps = get_current_gps()
-                    now = datetime.datetime.now()
-                    
+                    show_confirm_dialog(
+                        "Vehículo en Uso",
+                        f"El vehículo [{target_vehicle_plate}] está en uso por {other_driver_name} ({other_driver_rut}).\n\nSi confirmas, se cerrará su uso anterior, se le enviará una notificación y se activará para ti.",
+                        confirm_take_over
+                    )
+                else:
+                    # Caso libre
                     new_rec = UsageRecord(
                         vehicle_id=db_vehicle.id,
                         driver_id=db_driver.id,
-                        start_time=now,
-                        start_gps=start_gps,
+                        start_time=datetime.datetime.now(),
+                        start_gps=current_coords,
                         status="active"
                     )
-                    
                     db_sess.add(new_rec)
                     db_sess.commit()
                     
-                    # Notificar al supervisor
+                    # Notificar supervisor
                     send_supervisor_email(
                         supervisor_name="Carlos Silva (Supervisor)",
                         supervisor_email="carlos.silva@empresa.cl",
@@ -361,77 +452,268 @@ def get_status_view(page: ft.Page, on_navigate, entry_type: str, identifier: str
                         action="inicio"
                     )
                     
-                    # Mostrar SnackBar de éxito
-                    page.snack_bar = ft.SnackBar(
-                        content=ft.Text(f"Sesión iniciada con éxito para {db_driver.name}", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
-                        bgcolor=ft.Colors.GREEN_700,
-                        duration=4000,
-                        show_close_icon=True
-                    )
-                    page.snack_bar.open = True
+                    show_success_screen(db_driver.name, db_vehicle.plate, db_vehicle.model, "¡Activación Exitosa!", "Tu período de uso se ha iniciado correctamente.")
                     
-                    # Reemplazar el contenido completo de la tarjeta por la pantalla de éxito
-                    card_container.content = ft.Column(
-                        controls=[
-                            ft.Icon(ft.Icons.CHECK_CIRCLE, size=60, color=ft.Colors.GREEN_400),
-                            ft.Text("¡Uso Iniciado!", size=24, weight=ft.FontWeight.BOLD, color=ft.Colors.GREEN_400),
-                            ft.Container(height=10),
-                            ft.Text(
-                                "Su sesión se inició correctamente, ya puede usar este vehículo.",
-                                size=16,
-                                weight=ft.FontWeight.W_500,
-                                color=ft.Colors.WHITE,
-                                text_align=ft.TextAlign.CENTER
-                            ),
-                            ft.Container(height=10),
-                            ft.Container(
-                                content=ft.Column([
-                                    ft.Text(f"Conductor: {db_driver.name}", size=14, color=ft.Colors.WHITE),
-                                    ft.Text(f"Vehículo: {selected_plate} ({db_vehicle.model})", size=14, color=ft.Colors.WHITE),
-                                    ft.Text(f"Ubicación GPS: {start_gps}", size=12, color=ft.Colors.BLUE_200, italic=True),
-                                    ft.Text(f"Fecha/Hora: {now.strftime('%Y-%m-%d %H:%M:%S')}", size=12, color=ft.Colors.GREY_400),
-                                ], spacing=6),
-                                padding=15,
-                                bgcolor="#252538",
-                                border_radius=10,
-                                width=320
-                            ),
-                            ft.Container(height=15),
-                            ft.ElevatedButton(
-                                content=ft.Text("Aceptar / Volver al Inicio", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
-                                width=320,
-                                height=50,
-                                style=ft.ButtonStyle(
-                                    bgcolor="#3F51B5",
-                                    shape=ft.RoundedRectangleBorder(radius=10),
-                                ),
-                                on_click=lambda _: on_navigate("/")
+            except Exception as ex:
+                db_sess.rollback()
+                show_alert_dialog("Error", f"No se pudo activar: {ex}")
+            finally:
+                db_sess.close()
+
+        # Acción 2: Prolongar sesión actual
+        def handle_prolong():
+            db_sess = get_session()
+            try:
+                db_driver = db_sess.query(Driver).filter(Driver.id == driver_id).first()
+                # Buscar el registro activo actual
+                active_rec = db_sess.query(UsageRecord).filter(
+                    and_(UsageRecord.driver_id == db_driver.id, UsageRecord.status == "active")
+                ).first()
+                
+                if not active_rec:
+                    show_alert_dialog("Error", "No se encontró tu sesión activa.")
+                    return
+                    
+                vehicle_plate = active_rec.vehicle.plate
+                vehicle_model = active_rec.vehicle.model
+                vehicle_id = active_rec.vehicle_id
+                
+                # 1. Finalizar uso actual
+                active_rec.end_time = datetime.datetime.now()
+                active_rec.end_gps = current_coords
+                active_rec.status = "completed"
+                
+                # 2. Iniciar nuevo uso (prolongación)
+                new_rec = UsageRecord(
+                    vehicle_id=vehicle_id,
+                    driver_id=db_driver.id,
+                    start_time=datetime.datetime.now(),
+                    start_gps=current_coords,
+                    status="active"
+                )
+                db_sess.add(new_rec)
+                db_sess.commit()
+                
+                # Enviar notificación al supervisor
+                send_supervisor_email(
+                    supervisor_name="Carlos Silva (Supervisor)",
+                    supervisor_email="carlos.silva@empresa.cl",
+                    driver_name=db_driver.name,
+                    vehicle_plate=vehicle_plate,
+                    action="prolongación"
+                )
+                
+                show_success_screen(db_driver.name, vehicle_plate, vehicle_model, "¡Prolongación Exitosa!", "Se registró el término del período anterior e inicio del prolongado en el historial.")
+            except Exception as ex:
+                db_sess.rollback()
+                show_alert_dialog("Error", f"No se pudo prolongar: {ex}")
+            finally:
+                db_sess.close()
+
+        # Acción 3: Cambiar de patente (cerrando la anterior)
+        def handle_change_plate(new_plate_val):
+            new_plate_val = new_plate_val.strip().upper().replace(" ", "")
+            if len(new_plate_val) == 6 and "-" not in new_plate_val:
+                new_plate_val = f"{new_plate_val[:2]}-{new_plate_val[2:4]}-{new_plate_val[4:]}"
+                
+            if not new_plate_val:
+                show_alert_dialog("Falta patente", "Por favor ingrese la nueva patente.")
+                return
+
+            db_sess = get_session()
+            try:
+                db_driver = db_sess.query(Driver).filter(Driver.id == driver_id).first()
+                db_vehicle = db_sess.query(Vehicle).filter(Vehicle.plate == new_plate_val).first()
+                if not db_vehicle:
+                    show_alert_dialog("Patente no registrada", "El vehículo ingresado no pertenece a la flota.")
+                    return
+                    
+                if not db_vehicle.is_active:
+                    show_alert_dialog("VEHÍCULO INACTIVO", f"El vehículo {db_vehicle.plate} está inactivo ({db_vehicle.status}). No puede ser utilizado.")
+                    return
+                    
+                # Buscar el uso activo del conductor actual para cerrarlo
+                active_rec = db_sess.query(UsageRecord).filter(
+                    and_(UsageRecord.driver_id == db_driver.id, UsageRecord.status == "active")
+                ).first()
+                
+                # Comprobar si el vehículo nuevo está en uso por otro conductor (Driver B)
+                other_active = db_sess.query(UsageRecord).filter(
+                    and_(UsageRecord.vehicle_id == db_vehicle.id, UsageRecord.status == "active")
+                ).first()
+                
+                if other_active:
+                    other_driver_name = other_active.driver.name
+                    other_driver_rut = other_active.driver.rut
+                    other_driver_phone = other_active.driver.phone or "+56999999999"
+                    other_active_id = other_active.id
+                    target_vehicle_id = db_vehicle.id
+                    target_vehicle_plate = db_vehicle.plate
+                    target_vehicle_model = db_vehicle.model
+                    
+                    active_rec_id = active_rec.id if active_rec else None
+                    active_rec_plate = active_rec.vehicle.plate if (active_rec and active_rec.vehicle) else ""
+                    
+                    def confirm_take_over_and_change():
+                        db_sess2 = get_session()
+                        try:
+                            # 1. Terminar sesión de Driver B
+                            db_act_other = db_sess2.query(UsageRecord).filter(UsageRecord.id == other_active_id).first()
+                            db_act_other.end_time = datetime.datetime.now()
+                            db_act_other.end_gps = current_coords
+                            db_act_other.status = "completed"
+                            
+                            # Notificar a Driver B
+                            send_driver_sms(
+                                driver_name=other_driver_name,
+                                driver_phone=other_driver_phone,
+                                message=f"Hola {other_driver_name}. Tu sesión activa en el vehículo [{target_vehicle_plate}] ha sido cerrada por otro conductor ({driver_name})."
                             )
-                        ],
-                        horizontal_alignment=ft.CrossAxisAlignment.CENTER,
-                        spacing=15
-                    )
-                    page.update()
+                            
+                            # 2. Terminar sesión de Driver A (actual) en vehículo anterior
+                            if active_rec_id:
+                                db_act_current = db_sess2.query(UsageRecord).filter(UsageRecord.id == active_rec_id).first()
+                                db_act_current.end_time = datetime.datetime.now()
+                                db_act_current.end_gps = current_coords
+                                db_act_current.status = "completed"
+                                
+                                # Notificar supervisor del cierre anterior
+                                send_supervisor_email(
+                                    supervisor_name="Carlos Silva (Supervisor)",
+                                    supervisor_email="carlos.silva@empresa.cl",
+                                    driver_name=driver_name,
+                                    vehicle_plate=active_rec_plate,
+                                    action="término"
+                                )
+                            
+                            # 3. Iniciar nueva sesión para Driver A (actual) en nuevo vehículo
+                            new_rec = UsageRecord(
+                                vehicle_id=target_vehicle_id,
+                                driver_id=driver_id,
+                                start_time=datetime.datetime.now(),
+                                start_gps=current_coords,
+                                status="active"
+                            )
+                            db_sess2.add(new_rec)
+                            db_sess2.commit()
+                            
+                            # Notificar supervisor del inicio nuevo
+                            send_supervisor_email(
+                                supervisor_name="Carlos Silva (Supervisor)",
+                                supervisor_email="carlos.silva@empresa.cl",
+                                driver_name=driver_name,
+                                vehicle_plate=target_vehicle_plate,
+                                action="inicio"
+                            )
+                            
+                            show_success_screen(
+                                driver_name, 
+                                target_vehicle_plate, 
+                                target_vehicle_model, 
+                                "¡Activación Exitosa!", 
+                                f"Se cerró tu sesión anterior en el vehículo {active_rec_plate}. El vehículo {target_vehicle_plate.replace('-', '')} estaba asignado a {other_driver_name}, pero ahora ha sido asignado a ti."
+                            )
+                        except Exception as ex:
+                            db_sess2.rollback()
+                            show_alert_dialog("Error", f"No se pudo cambiar de vehículo: {ex}")
+                        finally:
+                            db_sess2.close()
                     
-                except Exception as ex:
-                    db_sess.rollback()
-                    show_alert_dialog("Error", f"No se pudo iniciar la sesión: {ex}")
-                    e.control.disabled = False
-                    page.update()
-                finally:
-                    db_sess.close()
+                    show_confirm_dialog(
+                        "Vehículo en Uso",
+                        f"El vehículo [{target_vehicle_plate}] está en uso por {other_driver_name} ({other_driver_rut}).\n\nSi confirmas, se cerrará su uso anterior, se le notificará y se cerrará tu uso activo actual en {active_rec_plate} para activar este nuevo vehículo.",
+                        confirm_take_over_and_change
+                    )
+                else:
+                    # Caso nuevo libre
+                    # 1. Terminar sesión anterior
+                    if active_rec:
+                        db_act_current = db_sess.query(UsageRecord).filter(UsageRecord.id == active_rec.id).first()
+                        db_act_current.end_time = datetime.datetime.now()
+                        db_act_current.end_gps = current_coords
+                        db_act_current.status = "completed"
+                        
+                        # Notificar supervisor del cierre anterior
+                        send_supervisor_email(
+                            supervisor_name="Carlos Silva (Supervisor)",
+                            supervisor_email="carlos.silva@empresa.cl",
+                            driver_name=db_driver.name,
+                            vehicle_plate=active_rec.vehicle.plate,
+                            action="término"
+                        )
+                        
+                    # 2. Iniciar sesión nueva
+                    new_rec = UsageRecord(
+                        vehicle_id=db_vehicle.id,
+                        driver_id=db_driver.id,
+                        start_time=datetime.datetime.now(),
+                        start_gps=current_coords,
+                        status="active"
+                    )
+                    db_sess.add(new_rec)
+                    db_sess.commit()
+                    
+                    # Notificar supervisor del inicio nuevo
+                    send_supervisor_email(
+                        supervisor_name="Carlos Silva (Supervisor)",
+                        supervisor_email="carlos.silva@empresa.cl",
+                        driver_name=db_driver.name,
+                        vehicle_plate=db_vehicle.plate,
+                        action="inicio"
+                    )
+                    
+                    show_success_screen(
+                        db_driver.name, 
+                        db_vehicle.plate, 
+                        db_vehicle.model, 
+                        "¡Activación Exitosa!", 
+                        f"Se cerró tu sesión anterior en {active_rec.vehicle.plate if active_rec else ''} e iniciaste un nuevo período de uso en {db_vehicle.plate}."
+                    )
+            except Exception as ex:
+                db_sess.rollback()
+                show_alert_dialog("Error", f"No se pudo cambiar de vehículo: {ex}")
+            finally:
+                db_sess.close()
+
+        # Vistas secundarias dinámicas
+        def show_no_active_session_view():
+            patente_input = ft.TextField(
+                label="Patente del Vehículo a Activar",
+                hint_text="Ej: AB-CD-12",
+                width=320,
+                height=60,
+                text_align=ft.TextAlign.CENTER,
+                border_color="#3F51B5",
+                focused_border_color="#009688",
+                border_radius=12,
+                color=ft.Colors.WHITE,
+                focused_border_width=2,
+            )
+            
+            def on_plate_change(e):
+                val = e.control.value.upper().replace("-", "").replace(" ", "")
+                if len(val) > 6:
+                    val = val[:6]
+                if len(val) == 6:
+                    formatted = f"{val[:2]}-{val[2:4]}-{val[4:]}"
+                    e.control.value = formatted
+                else:
+                    e.control.value = val
+                page.update()
+                
+            patente_input.on_change = on_plate_change
+
+            def simulate_qr_selection(e):
+                patente_input.value = "SL-DS-66"
+                page.update()
 
             content_area.controls = [
                 ft.Icon(ft.Icons.PERSON, size=50, color="#009688"),
-                ft.Text(f"Hola, {driver.name}", size=22, color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
-                ft.Text(f"Rol: {driver.role}", size=14, color=ft.Colors.GREY_400),
+                ft.Text(f"Hola, {driver_name}", size=22, color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
                 ft.Text("No tienes ningún vehículo activo actualmente.", size=14, color=ft.Colors.GREY_300),
-                
-                ft.Container(height=10),
-                
-                ft.Text("Iniciar uso en un vehículo:", size=14, weight=ft.FontWeight.W_500, color=ft.Colors.WHITE),
-                vehicle_dropdown,
-                
+                ft.Divider(height=10, color="#2E2E3E"),
+                ft.Text("Ingresar Patente para Iniciar Uso", size=14, color=ft.Colors.WHITE, weight=ft.FontWeight.W_500),
+                patente_input,
                 ft.ElevatedButton(
                     content=ft.Row(
                         controls=[
@@ -447,34 +729,54 @@ def get_status_view(page: ft.Page, on_navigate, entry_type: str, identifier: str
                         bgcolor="#009688",
                         shape=ft.RoundedRectangleBorder(radius=10),
                     ),
-                    on_click=handle_vehicle_submit
+                    on_click=lambda _: handle_activate(patente_input.value)
+                ),
+                ft.Text("O bien:", size=12, color=ft.Colors.GREY_500),
+                ft.OutlinedButton(
+                    content=ft.Row(
+                        controls=[
+                            ft.Icon(ft.Icons.QR_CODE_SCANNER, color="#009688"),
+                            ft.Text("Simular QR (SL-DS-66)", color="#009688", weight=ft.FontWeight.BOLD)
+                        ],
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        spacing=10
+                    ),
+                    width=320,
+                    height=50,
+                    style=ft.ButtonStyle(
+                        shape=ft.RoundedRectangleBorder(radius=10),
+                    ),
+                    on_click=simulate_qr_selection
                 )
             ]
-        else:
-            # ----------------------------------------------------
-            # CONDUCTOR CON USO ACTIVO
-            # ----------------------------------------------------
-            # El conductor tiene una sesión activa.
-            vehicle_in_use = active_record.vehicle
-            
-            def confirm_close_active(e):
-                # Cerrar sesión de uso
-                terminate_usage(
-                    active_record.id, 
-                    "/", 
-                    f"Su sesión de uso del vehículo {vehicle_in_use.plate} ha sido terminada."
-                )
+            page.update()
 
+        def show_active_session_options_view():
+            db_sess = get_session()
+            fresh_record = db_sess.query(UsageRecord).filter(
+                and_(UsageRecord.driver_id == driver_id, UsageRecord.status == "active")
+            ).first()
+            
+            if not fresh_record:
+                db_sess.close()
+                show_no_active_session_view()
+                return
+                
+            vehicle_plate = fresh_record.vehicle.plate
+            vehicle_model = fresh_record.vehicle.model
+            start_time_str = fresh_record.start_time.strftime('%H:%M:%S (%Y-%m-%d)')
+            db_sess.close()
+            
             content_area.controls = [
                 ft.Icon(ft.Icons.WATCH_LATER, size=50, color=ft.Colors.AMBER_400),
-                ft.Text(f"SESIÓN EN CURSO", size=22, color=ft.Colors.AMBER_400, weight=ft.FontWeight.BOLD),
-                ft.Text(f"Conductor: {driver.name}", size=16, color=ft.Colors.WHITE),
+                ft.Text("SESIÓN EN CURSO", size=22, color=ft.Colors.AMBER_400, weight=ft.FontWeight.BOLD),
+                ft.Text(f"Hola, {driver_name}", size=16, color=ft.Colors.WHITE),
                 
                 ft.Container(
                     content=ft.Column([
-                        ft.Text(f"Vehículo Activo: {vehicle_in_use.plate}", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
-                        ft.Text(f"Modelo: {vehicle_in_use.model}", size=14, color=ft.Colors.GREY_300),
-                        ft.Text(f"Inicio: {active_record.start_time.strftime('%H:%M:%S (%Y-%m-%d)')}", size=12, color=ft.Colors.GREY_400),
+                        ft.Text(f"Vehículo Activo: {vehicle_plate}", size=16, weight=ft.FontWeight.BOLD, color=ft.Colors.WHITE),
+                        ft.Text(f"Modelo: {vehicle_model}", size=14, color=ft.Colors.GREY_300),
+                        ft.Text(f"Inicio: {start_time_str}", size=12, color=ft.Colors.GREY_400),
                     ], spacing=8),
                     padding=20,
                     bgcolor="#252538",
@@ -482,13 +784,13 @@ def get_status_view(page: ft.Page, on_navigate, entry_type: str, identifier: str
                     width=320,
                 ),
                 
-                ft.Text("¿Desea seguir usando este vehículo?", size=14, color=ft.Colors.GREY_300),
+                ft.Text("¿Qué desea hacer?", size=14, color=ft.Colors.GREY_300),
                 
                 ft.ElevatedButton(
                     content=ft.Row(
                         controls=[
-                            ft.Icon(ft.Icons.CHECK, color=ft.Colors.WHITE),
-                            ft.Text("Sí, seguir usando", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD)
+                            ft.Icon(ft.Icons.REPLAY, color=ft.Colors.WHITE),
+                            ft.Text("Prolongar uso anterior", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD)
                         ],
                         alignment=ft.MainAxisAlignment.CENTER,
                         spacing=10
@@ -499,14 +801,14 @@ def get_status_view(page: ft.Page, on_navigate, entry_type: str, identifier: str
                         bgcolor="#3F51B5",
                         shape=ft.RoundedRectangleBorder(radius=10),
                     ),
-                    on_click=lambda _: on_navigate("/")
+                    on_click=lambda _: handle_prolong()
                 ),
                 
                 ft.OutlinedButton(
                     content=ft.Row(
                         controls=[
-                            ft.Icon(ft.Icons.STOP, color=ft.Colors.RED_400),
-                            ft.Text("No, terminar uso", color=ft.Colors.RED_400, weight=ft.FontWeight.BOLD)
+                            ft.Icon(ft.Icons.ADD, color=ft.Colors.GREEN_400),
+                            ft.Text("Activar una nueva patente", color=ft.Colors.GREEN_400, weight=ft.FontWeight.BOLD)
                         ],
                         alignment=ft.MainAxisAlignment.CENTER,
                         spacing=10
@@ -516,9 +818,96 @@ def get_status_view(page: ft.Page, on_navigate, entry_type: str, identifier: str
                     style=ft.ButtonStyle(
                         shape=ft.RoundedRectangleBorder(radius=10),
                     ),
-                    on_click=confirm_close_active
+                    on_click=lambda _: show_enter_new_plate_view(vehicle_plate)
                 )
             ]
+            page.update()
+
+        def show_enter_new_plate_view(old_plate):
+            nueva_patente_input = ft.TextField(
+                label="Nueva Patente a Activar",
+                hint_text="Ej: AB-CD-12",
+                width=320,
+                height=60,
+                text_align=ft.TextAlign.CENTER,
+                border_color="#3F51B5",
+                focused_border_color="#009688",
+                border_radius=12,
+                color=ft.Colors.WHITE,
+                focused_border_width=2,
+            )
+            
+            def on_plate_change(e):
+                val = e.control.value.upper().replace("-", "").replace(" ", "")
+                if len(val) > 6:
+                    val = val[:6]
+                if len(val) == 6:
+                    formatted = f"{val[:2]}-{val[2:4]}-{val[4:]}"
+                    e.control.value = formatted
+                else:
+                    e.control.value = val
+                page.update()
+                
+            nueva_patente_input.on_change = on_plate_change
+
+            def simulate_qr_selection(e):
+                nueva_patente_input.value = "SL-DS-66"
+                page.update()
+
+            content_area.controls = [
+                ft.Icon(ft.Icons.TRANSFER_WITHIN_A_STATION, size=50, color=ft.Colors.GREEN_400),
+                ft.Text("Cambiar de Vehículo", size=22, color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD),
+                ft.Text(f"Se cerrará el uso activo actual en {old_plate}.", size=12, color=ft.Colors.AMBER_400, text_align=ft.TextAlign.CENTER),
+                ft.Divider(height=10, color="#2E2E3E"),
+                
+                nueva_patente_input,
+                
+                ft.ElevatedButton(
+                    content=ft.Row(
+                        controls=[
+                            ft.Icon(ft.Icons.PLAY_ARROW, color=ft.Colors.WHITE),
+                            ft.Text("Confirmar Cambio y Activar", color=ft.Colors.WHITE, weight=ft.FontWeight.BOLD)
+                        ],
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        spacing=10
+                    ),
+                    width=320,
+                    height=50,
+                    style=ft.ButtonStyle(
+                        bgcolor="#009688",
+                        shape=ft.RoundedRectangleBorder(radius=10),
+                    ),
+                    on_click=lambda _: handle_change_plate(nueva_patente_input.value)
+                ),
+                ft.Text("O bien:", size=12, color=ft.Colors.GREY_500),
+                ft.OutlinedButton(
+                    content=ft.Row(
+                        controls=[
+                            ft.Icon(ft.Icons.QR_CODE_SCANNER, color="#009688"),
+                            ft.Text("Simular QR (SL-DS-66)", color="#009688", weight=ft.FontWeight.BOLD)
+                        ],
+                        alignment=ft.MainAxisAlignment.CENTER,
+                        spacing=10
+                    ),
+                    width=320,
+                    height=50,
+                    style=ft.ButtonStyle(
+                        shape=ft.RoundedRectangleBorder(radius=10),
+                    ),
+                    on_click=simulate_qr_selection
+                ),
+                ft.TextButton(
+                    content=ft.Text("Volver a Opciones", color=ft.Colors.GREY_400),
+                    on_click=lambda _: show_active_session_options_view()
+                )
+            ]
+            page.update()
+
+        # Cargar vista inicial según si tiene sesión activa
+        if not driver_active_record:
+            show_no_active_session_view()
+        else:
+            show_active_session_options_view()
 
     # Cerrar la sesión de la base de datos
     session.close()
